@@ -1,0 +1,308 @@
+{
+	"info": {
+		"_postman_id": "7d5417ff-933f-45d7-992b-c15cb4d6491a",
+		"name": "formation-api",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Get customers",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/ld+json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{url}}/api/customers",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"customers"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get invoices",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"type": "text",
+						"value": "application/ld+json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{url}}/api/invoices?order[sentAt]=desc",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"invoices"
+					],
+					"query": [
+						{
+							"key": "order[sentAt]",
+							"value": "desc"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get user detail",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpYXQiOjE1Njg2NDMxOTksImV4cCI6MTU2ODY0Njc5OSwicm9sZXMiOlsiUk9MRV9VU0VSIl0sInVzZXJuYW1lIjoic2ltb25lNzhAcGVycmV0LmZyIn0.JGdwsU2LUQyUNIoXeoM1fwX7NKNkAneJNjhqye25X0vwCCVz92EI6L3dmbg4v2iCAlxKpww_JCmA44URrHw6sIWjGUk3m123mzVjWg6cDCYRakAnk1Zsdjc6X4Mv9cFZvdAHPG62W8Jy4lPm1zl8dTIoggjOpuE1GaVsukWbkTteikPX8SLfOV01XODBaOaudajgN8eyEXAqJeSXaeBGbOtH1aGTa_uJtkSr2dymz1dqJNpskLYFAjHZTW0U5wze0ZD4daOJMzGnnlbtL_PcA_nJObD3vC5uT2LiW7_M2pYeDaZbNUMw0vn62g_u9ZOYyHsjTrYqwM-iWxzGpSuS6ccS1zHEWDfaGJa6-WqBRHkJAYIL8XQ60eThM1fRQe50B3Xnof3D21lQFGx1Y8rp2dPi683v-Rg4NCoSQuHR4ey0OLd9Qre2siHt3zs37pzZyaZhRoSUUmDSRq5hspVif41YbCgtNXhCDkHib3AgsvpiV8748wU1SDAWN__faftNGTpmpZI-Ox3QU6vIIeE4KZxuUqU5IE1ix9q4Vor1Q2OqWtLJxcYVqcGVgNqiQggTrLjnjB-oDnLBzBBnl0jFw2tJQYpqqGDyKxVv3CXKo-c2JqJIiF-D09BhWaow38y5OoilVwCMGB6C9ymcFUh-qxCS1R0n4rjSE6GymST4p9Y",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"type": "text",
+						"value": "application/ld+json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{url}}/api/users/25",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"users",
+						"25"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get invoices Copy",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"type": "text",
+						"value": "application/ld+json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{url}}/api/users",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get invoices Copy Copy",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"type": "text",
+						"value": "application/ld+json"
+					},
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"firstName\": \"Ma\",\n\t\"lastName\": \"Truc\",\n\t\"email\": \"machintruc@outlook.com\",\n\t\"user\": \"/api/users/21\"\n}"
+				},
+				"url": {
+					"raw": "{{url}}/api/customers",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"customers"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST invoices",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpYXQiOjE1Njg2NDMxOTksImV4cCI6MTU2ODY0Njc5OSwicm9sZXMiOlsiUk9MRV9VU0VSIl0sInVzZXJuYW1lIjoic2ltb25lNzhAcGVycmV0LmZyIn0.JGdwsU2LUQyUNIoXeoM1fwX7NKNkAneJNjhqye25X0vwCCVz92EI6L3dmbg4v2iCAlxKpww_JCmA44URrHw6sIWjGUk3m123mzVjWg6cDCYRakAnk1Zsdjc6X4Mv9cFZvdAHPG62W8Jy4lPm1zl8dTIoggjOpuE1GaVsukWbkTteikPX8SLfOV01XODBaOaudajgN8eyEXAqJeSXaeBGbOtH1aGTa_uJtkSr2dymz1dqJNpskLYFAjHZTW0U5wze0ZD4daOJMzGnnlbtL_PcA_nJObD3vC5uT2LiW7_M2pYeDaZbNUMw0vn62g_u9ZOYyHsjTrYqwM-iWxzGpSuS6ccS1zHEWDfaGJa6-WqBRHkJAYIL8XQ60eThM1fRQe50B3Xnof3D21lQFGx1Y8rp2dPi683v-Rg4NCoSQuHR4ey0OLd9Qre2siHt3zs37pzZyaZhRoSUUmDSRq5hspVif41YbCgtNXhCDkHib3AgsvpiV8748wU1SDAWN__faftNGTpmpZI-Ox3QU6vIIeE4KZxuUqU5IE1ix9q4Vor1Q2OqWtLJxcYVqcGVgNqiQggTrLjnjB-oDnLBzBBnl0jFw2tJQYpqqGDyKxVv3CXKo-c2JqJIiF-D09BhWaow38y5OoilVwCMGB6C9ymcFUh-qxCS1R0n4rjSE6GymST4p9Y",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"amount\": 500,\n\t\"status\": \"SENT\",\n\t\"sentAt\": \"2019-04-06\",\n\t\"customer\": \"/api/customers/281\"\n}"
+				},
+				"url": {
+					"raw": "{{url}}/api/invoices",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"invoices"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST login_check",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"username\": \"simone78@perret.fr\",\n\t\"password\": \"password\"\n}"
+				},
+				"url": {
+					"raw": "{{url}}/api/login_check",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"login_check"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST users",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"firstName\": \"Meme\",\n\t\"lastName\": \"Myself\",\n\t\"email\": \"me@symfony.com\",\n\t\"password\": \"password\"\n}"
+				},
+				"url": {
+					"raw": "{{url}}/api/users",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST customer",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpYXQiOjE1Njg2MjM1MDEsImV4cCI6MTU2ODYyNzEwMSwicm9sZXMiOlsiUk9MRV9VU0VSIl0sInVzZXJuYW1lIjoic2ltb25lNzhAcGVycmV0LmZyIn0.ezjEwC3c0aJofycT7TYbd0-BR7PyUwLEHD8-Aumj007dFjhf15NDEwyyqCC3hBCuSQhLZnJO3CGyuX0KbJHj3XubSc4cclhVeRHiYnuQM0b5yVEojnZ_4pSUMfwh5QW7h198chdXeZyAjWST95-mCEDeo5J45gevAiqnh8uwiYG6AEtkdDzraWF6eO9p7WtVnYVk6daD-vHwnvUPtwXYgCMOOE46ezcbgUAzwB_x2SrKCYYQnFF9CEehlaZy7uQ3OaU_yzBwo4DPBfU0nxjEoFsb3ahjkxWg0ir3lplB4GchwAsVVCZl7vW6mfP7eVw6sBKe1E5BHZxnRZcgamEZVpv_EoqwFmheBDIkssq0srXj75emRq3FMiQlL9ED8SNwdNpOp2FZsJozvoVPdu7-VDkbFCRC3E2xK-KgGO0plRKSpt1REajoN5gmoKylC3SCpaEyzKw9GV9HOHbbJROwdhl7te7ndlvDIoyQrAodavLRSFkm0JsT6zX7XnEEvBo7Ym6OGs7O7wuV0xV4pUVlInajacqkYpakMdEq0LU5ON0l6FZy2PReBtqrU4bE6wtVh8LzSsA9kWXl49YpQ48V2vX6tNhmGS7d2chOR-n5ysRWW-Ony8vAYqPk01WZm1alCI2qpeIA09OXlDesjsY5yyAhd1WXlWokLjXY11_Bj0U",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"firstName\": \"Medzdz\",\n\t\"lastName\": \"Myself\",\n\t\"email\": \"me@symfony.com\"\n}"
+				},
+				"url": {
+					"raw": "{{url}}/api/customers",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"customers"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
