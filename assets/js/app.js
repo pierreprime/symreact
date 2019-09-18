@@ -11,6 +11,7 @@ import Navbar from "./components/Navbar";
 import Homepage from "./pages/Homepage";
 import { HashRouter, Switch, Route } from "react-router-dom";
 import CustomersPage from "./pages/CustomersPage";
+import CustomersPagePaginated from "./pages/CustomersPagePaginated";
 
 // any CSS you require will output into a single css file (app.css in this case)
 require('../css/app.css');
