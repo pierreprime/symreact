@@ -30,8 +30,6 @@ class CurrentUserExtension implements QueryCollectionExtensionInterface, QueryIt
         // take into account connected user
         if(($resourceClass === Customer::class || $resourceClass === Invoice::class) && !$this->auth->isGranted('ROLE_ADMIN') && $user instanceof User){
 
-            var_dump($user);
-
             $rootAlias = $queryBuilder->getRootAliases()[0];
 
             if($resourceClass === Customer::class){

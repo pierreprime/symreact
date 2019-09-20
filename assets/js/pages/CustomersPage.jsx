@@ -8,10 +8,17 @@ const CustomersPage = props => {
     const [currentPage, setCurrentPage] = useState(1);
     const [search, setSearch] = useState('');
 
+    const fetchCustomers = async () => {
+        try{
+            const data = await CustomersApi.findAll();
+            setCustomers(data);
+        }catch (e) {
+            console.log(e.response)
+        }
+    };
+
     useEffect(() => {
-        CustomersApi.findAll()
-            .then(data => setCustomers(data))
-            .catch(error => console.log(error.response));
+        fetchCustomers();
     }, []);
 
     const handleDelete = async id => {
@@ -32,9 +39,8 @@ const CustomersPage = props => {
         setCurrentPage(page);
     };
 
-    const handleSearch = event => {
-        const value = event.currentTarget.value;
-        setSearch(value);
+    const handleSearch = ({currentTarget}) => {
+        setSearch(currentTarget.value);
         setCurrentPage(1);
     };
 
@@ -97,12 +103,14 @@ const CustomersPage = props => {
                 </tbody>
             </table>
 
-            {itemsPerPage < filteredCustomers.length && <Pagination
+            {itemsPerPage < filteredCustomers.length &&
+            <Pagination
                 currentPage={currentPage}
                 itemsPerPage={itemsPerPage}
                 length={filteredCustomers.length}
                 onPageChanged={handleChangePage}
-            />}
+                />
+            }
         </>
     );
 };
