@@ -18,6 +18,7 @@ import AuthApi from "./services/AuthApi";
 import AuthContext from "./contexts/AuthContext";
 import PrivateRoute from "./components/PrivateRoute";
 import CustomerPage from "./pages/CustomerPage";
+import InvoicePage from "./pages/InvoicePage";
 
 // any CSS you require will output into a single css file (app.css in this case)
 require('../css/app.css');
@@ -51,6 +52,10 @@ const App = () => {
                     render={props => (
                         <LoginPage onLogin={setIsAuthenticated} {...props} />
                     )}
+                />
+                <PrivateRoute
+                    path="/invoices/:id"
+                    component={InvoicePage}
                 />
                 <PrivateRoute
                     path="/invoices"

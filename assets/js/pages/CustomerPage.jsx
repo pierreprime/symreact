@@ -1,23 +1,46 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 import Field from "../components/forms/Field";
 import {Link} from "react-router-dom";
-import axios from "axios";
+import CustomersApi from "../services/CustomersApi";
 
-const CustomerPage = (props) => {
+const CustomerPage = ({match, history}) => {
+
+    const {id = "new"} = match.params;
 
     const [customer, setCustomer] = useState({
-        lastName: "Myself",
+        lastName: "",
         firstName: "",
         email: "",
         company: ""
     });
 
     const [errors, setErrors] = useState({
-        lastName: "Le nom est obligatoire",
+        lastName: "",
         firstName: "",
         email: "",
         company: ""
     });
+
+    const [editing, setEditing] = useState(false);
+
+    const fetchCustomer = async id => {
+        try {
+            const {firstName, lastName, email, company} = await CustomersApi.find(id);
+            console.log(firstName);
+            setCustomer({firstName, lastName, email, company});
+        }catch (e) {
+            console.log(e.response);
+            // notif error
+            // history.replace('/customers');
+        }
+    };
+
+    useEffect(() => {
+        if(id !== "new") {
+            setEditing(true);
+            fetchCustomer(id);
+        }
+    }, [id]);
 
     const handleChange = ({currentTarget}) => {
         const { name, value } = currentTarget;
@@ -27,27 +50,47 @@ const CustomerPage = (props) => {
     const handleSubmit = async event => {
         event.preventDefault();
 
+        console.log(customer);
+
         // http request
         try{
-            const response = await axios.post("http://localhost:8000/api/customers", customer);
+            if(editing){
+                console.log(customer);
+                await CustomersApi.update(id, customer);
+                // notif success
+            }
+            else {
+                await CustomersApi.create(customer);
+                // history.replace("/customers");
+            }
+
+            // notification success
+
+            console.log(response.data);
+
             // reset errors state
             setErrors({});
-        }catch (e) {
-            if(e.response.data.violations){
+        }catch ({response}) {
+
+            const { violations } = response.data;
+            if(violations){
                 const apiErrors = [];
-                e.response.data.violations.forEach(
-                    violation => {
-                        apiErrors[violation.propertyPath] = violation.message;
+                violations.forEach(
+                    ({propertyPath, message}) => {
+                        apiErrors[propertyPath] = message;
                     }
                 );
                 setErrors(apiErrors);
+
+                // notif error
             }
         }
     };
 
     return (
         <>
-            <h1>Création d'un client</h1>
+            {!editing && <h1>Création d'un client</h1> || (
+            <h1>Modification du client</h1>)}
 
             <form onSubmit={handleSubmit}>
                 <Field
@@ -90,6 +133,6 @@ const CustomerPage = (props) => {
             </form>
         </>
     );
-}
+};
 
 export default CustomerPage;
