@@ -3,6 +3,7 @@ import Field from "../components/forms/Field";
 import Select from "../components/forms/Select";
 import {Link} from "react-router-dom";
 import CustomersApi from "../services/CustomersApi";
+import InvoicesApi from "../services/InvoicesApi";
 import axios from "axios";
 
 const InvoicePage = ({history, match}) => {
@@ -16,7 +17,7 @@ const InvoicePage = ({history, match}) => {
     });
 
     const [customers, setCustomers] = useState([]);
-
+    const [editing, setEditing] = useState(false);
     const [errors, setErrors] = useState({
         amount: "",
         customer: "",
@@ -31,7 +32,19 @@ const InvoicePage = ({history, match}) => {
                 setInvoice({...invoice, customer: data[0].id});
             }
         }catch (e) {
+            history.replace('/invoices');
+            // flash notif error
+        }
+    };
+
+    const fetchInvoice = async id => {
+        try{
+            const {amount, status, customer} = await InvoicesApi.find(id);
+            setInvoice({amount, status, customer: customer.id});
+        }catch (e) {
             console.log(e.response);
+            // notif error
+            history.replace('/invoices');
         }
     };
 
@@ -39,7 +52,12 @@ const InvoicePage = ({history, match}) => {
         fetchCustomers();
     }, []);
 
-    
+    useEffect(() => {
+        if(id !== "new"){
+            setEditing(true);
+            fetchInvoice(id);
+        }
+    }, [id]);
 
     const handleChange = ({currentTarget}) => {
         const {name, value} = currentTarget;
@@ -47,17 +65,16 @@ const InvoicePage = ({history, match}) => {
     };
 
     const handleSubmit = async event => {
-        event.preventDefault()
-
-        console.log(invoice.customer);
+        event.preventDefault();
 
         try{
-            const response = await axios.post("http://localhost:8000/api/invoices", {
-                ...invoice,
-                customer: `/api/customers/${invoice.customer}`
-            });
-            // success notification
-            history.replace('/invoices');
+            if(editing){
+                await InvoicesApi.update(id, invoice);
+            }else{
+                await InvoicesApi.create(invoice);
+                // success notification
+                history.replace('/invoices');
+            }
         }catch ({response}) {
 
             const { violations } = response.data;
@@ -77,7 +94,7 @@ const InvoicePage = ({history, match}) => {
 
     return (
         <>
-            <h1>Création d'une facture</h1>
+            {editing && <h1>Modification d'une facture</h1> || <h1>Création d'une facture</h1>}
             <form onSubmit={handleSubmit}>
                 <Field
                     name="amount"
