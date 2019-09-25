@@ -8,7 +8,7 @@ function findAll(){
         .then(response => response.data['hydra:member']));
 
     return axios
-        .get("http://localhost:8000/api/invoices")
+        .get(INVOICES_API)
         .then(response => response.data['hydra:member']);
 }
 
